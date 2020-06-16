@@ -24,9 +24,14 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/css/bootstrap.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/jquery-3.4.1.slim.min.js",
+              "src/assets/js/bootstrap.min.js",
+              "src/assets/js/popper.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -119,6 +124,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "profile-research"
+    }
+  },
+  "defaultProject": "profile-research",
+  "cli": {
+    "analytics": "9bd36a7e-dbaf-4174-853d-679a44f022d5"
+  }
 }
