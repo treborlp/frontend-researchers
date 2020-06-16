@@ -13,48 +13,45 @@
               <form>
                 <div class="form-group">
                   <label for="exampleFormControlInput1">Name</label>
-                  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="name" [(ngModel)]="researcher.name" >
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Lastname</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="lastname" [(ngModel)]="researcher.lastname">
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlInput1">MaxDegree</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="maxDegree" [(ngModel)]="researcher.maxDegree">
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Photo</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="photo" [(ngModel)]="researcher.photo">
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Email</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="email" [(ngModel)]="researcher.email">
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Cellphone</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="cellphone" [(ngModel)]="researcher.cellphone">
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlInput1">CTI Vitae</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="profileCTIVitae" [(ngModel)]="researcher.profileCTIVitae">
                 </div>
             
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Google Scholar</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="profileGoogleScholar" [(ngModel)]="researcher.profileGoogleScholar">
                 </div>
             
                 <div class="form-group">
                     <label for="exampleFormControlInput1">ORCID</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="profileOrcid" [(ngModel)]="researcher.profileOrcid">
                 </div>
               
-             
-                <div class="form-group">
-                  <label for="exampleFormControlTextarea1">Example textarea</label>
-                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                </div>
+                <button role="button"  (click)="crearResearcher()" class="btn btn-primary">Crear</button>
+                
               </form>
             </div>
           </div>

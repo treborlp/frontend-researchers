@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ResearcherService } from 'src/app/admin/service/researcher.service';
+import { Researcher } from 'src/app/admin/class/researcher';
 
 @Component({
   selector: 'app-profiles',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfilesComponent implements OnInit {
 
-  constructor() { }
+  researcher: Researcher = new Researcher();
+  constructor(private researcherService: ResearcherService) { }
 
   ngOnInit(): void {
+    this.researcherService.findResearcher(1).subscribe(
+      researcher => this.researcher = researcher
+    )
+    
   }
+
+  
+
+
 
 }
