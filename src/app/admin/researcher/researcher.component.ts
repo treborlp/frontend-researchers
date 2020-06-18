@@ -10,9 +10,11 @@ import { Researcher } from '../class/researcher';
 export class ResearcherComponent implements OnInit {
 
   researcher: Researcher = new Researcher();
+  researchers: Researcher[];
   constructor(private researcherService: ResearcherService) { }
 
   ngOnInit(): void {
+    this.cargarUsuarios();
   }
 
   public crearResearcher(): void{
@@ -21,8 +23,15 @@ export class ResearcherComponent implements OnInit {
       researcher => {
         //this.router.navigate(['/sectores'])
         //Swal.fire('Nuevo Sector', `Sector ${sector.nombreSector}`, 'success')   
-        console.log(`Researcher ${researcher.name} was created`);     
+        console.log(`Researcher ${researcher.name} was created`);
+        this.cargarUsuarios();     
       }
+    )
+  }
+
+  cargarUsuarios(): void{
+    this.researcherService.getResearchers().subscribe(
+      researchers => this.researchers = researchers  
     )
   }
 

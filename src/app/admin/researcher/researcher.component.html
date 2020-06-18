@@ -8,7 +8,7 @@
               Featured
             </div>
             <div class="card-body">
-              <h5 class="card-title">Special title treatment</h5>
+              <h5 class="card-title">Registro de Investigador Inaigem</h5>
              
               <form>
                 <div class="form-group">
@@ -57,11 +57,41 @@
           </div>
       </div>
       <div class="col-sm">
-        One of three columns
+
+        <div class="card">
+          <div class="card-header">
+            Investigadores Registrados
+          </div>
+          <div class="card-body">
+            
+            <table class="table table-sm">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Apellido</th>
+                  <th scope="col">Dirección</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                <tr *ngFor="let researcher of researchers">
+                  <th scope="row">{{researcher.id}}</th>
+                  <td>{{researcher.name}}</td>
+                  <td>{{researcher.lastname}}</td>
+                  <td>{{researcher.maxDegree}}</td>
+                </tr>
+
+              </tbody>
+            </table>
+
+            <a href="#" class="btn btn-primary">Registrar Investigador</a>
+          </div>
+        </div>
+       
+
       </div>
-      <div class="col-sm">
-        One of three columns
-      </div>
+      
     </div>
   </div>
 
