@@ -7,12 +7,14 @@ import { FormsModule } from "@angular/forms"; //Necesario paraactivar los formul
 import { AppComponent } from './app.component';
 import { ResearcherComponent } from './admin/researcher/researcher.component';
 import { ProfilesComponent } from './public/profiles/profiles.component';
+import { LoginComponent } from './admin/login/login.component';
 
 //objeto de rutas
 const routes: Routes = [
   {path:'', redirectTo:'public/researcher', pathMatch: 'full'},
   {path:'public/researcher', component: ProfilesComponent },
   {path:'admin/researcher', component: ResearcherComponent },
+  {path:'login', component: LoginComponent },
 
   
 ];
@@ -21,7 +23,8 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     ResearcherComponent,
-    ProfilesComponent
+    ProfilesComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
