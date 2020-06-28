@@ -13,9 +13,10 @@ export class ProfilesComponent implements OnInit {
   constructor(private researcherService: ResearcherService) { }
 
   ngOnInit(): void {
-    this.researcherService.findResearcher(1).subscribe(
+    
+    /*this.researcherService.findResearcher(1).subscribe(
       researcher => this.researcher = researcher
-    )
+    )*/
     
   }
 

@@ -20,9 +20,10 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit(): void {
+    //console.log(this.auth.isAuthenticated())
     this._document.body.classList.add('bodybg-color');
     if(this.auth.isAuthenticated()){
-      this.router.navigate(["http://google.com"]);
+      this.router.navigate(["/public"]);
     }
    
   }
@@ -33,21 +34,23 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void{
-    console.log(this.usuario)
+
+    //console.log(this.usuario)
     if(this.usuario.username == null || this.usuario.password==null){
       console.log("Debe completar los campos")
     }
     
-  this.auth.login(this.usuario).subscribe(response => {
+    this.auth.login(this.usuario).subscribe(response => {
       
+      //console.log(response.access_token)
       this.auth.guardarUsuario(response.access_token)
       this.auth.gurdarToken(response.access_token);
 
       let usuario = this.auth.usuario;
       
-      console.log(usuario);
+     //console.log(usuario);
 
-      this.router.navigate(["/public/researcher"]);
+      this.router.navigate(["/public"]);
     }, error => {
       if(error.status == 400){
         console.log("Error de usuario");

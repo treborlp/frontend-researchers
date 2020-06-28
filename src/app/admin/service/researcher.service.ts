@@ -4,6 +4,7 @@ import { Researcher } from '../class/researcher';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,19 +15,32 @@ export class ResearcherService {
 
   private headers = new HttpHeaders({'Content-Type':'application/json'})
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private authService: AuthService) { }
+
+  private agregarAuthorizationHeader(){
+    let token = this.authService.token;
+    if(token!=null){
+      return this.headers.append('Authorization','Bearer '+token);
+    }
+    return this.headers;
+  }
 
   private isNoAutorizado(error): boolean{
-    if(error.status==401 || error.status==403){
+    if(error.status==401){
       this.router.navigate(["/login"])
       return true;
-    }else{
-      return false
     }
+    if(error.status==403){
+      console.log("No tienes permisos para cambiar esta caracteristica")
+      this.router.navigate(["/public"])
+      return true;
+    }
+      return false
+    
   }
 
   createResearcher(researcher: Researcher): Observable<Researcher>{
-    return this.http.post<Researcher>(this.url, researcher, {headers: this.headers}).pipe(
+    return this.http.post<Researcher>(this.url, researcher, {headers: this.agregarAuthorizationHeader()}).pipe(
       catchError(e=>  {
         if(this.isNoAutorizado(e))
            return throwError(e);
@@ -35,7 +49,7 @@ export class ResearcherService {
   }
 
   findResearcher(id: number): Observable<Researcher>{
-    return this.http.get<Researcher>(`${this.url}/${id}`).pipe(
+    return this.http.get<Researcher>(`${this.url}/${id}`, {headers: this.agregarAuthorizationHeader()}).pipe(
       catchError(e=>  {
         this.isNoAutorizado(e);
         return throwError(e);
@@ -44,7 +58,7 @@ export class ResearcherService {
   }
 
   getResearchers(): Observable<Researcher[]>{
-    return this.http.get(this.url).pipe(
+    return this.http.get(this.url, {headers: this.agregarAuthorizationHeader()}).pipe(
       map((response) => response as Researcher[]),
       catchError(e=>  {
            this.isNoAutorizado(e)

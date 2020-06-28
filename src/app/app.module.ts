@@ -8,12 +8,13 @@ import { AppComponent } from './app.component';
 import { ResearcherComponent } from './admin/researcher/researcher.component';
 import { ProfilesComponent } from './public/profiles/profiles.component';
 import { LoginComponent } from './admin/login/login.component';
+import { AuthGuard } from './admin/guard/auth.guard';
 
 //objeto de rutas
 const routes: Routes = [
-  {path:'', redirectTo:'public/researcher', pathMatch: 'full'},
-  {path:'public/researcher', component: ProfilesComponent },
-  {path:'admin/researcher', component: ResearcherComponent },
+  {path:'', redirectTo:'login', pathMatch: 'full'},
+  {path:'public', component: ProfilesComponent },
+  {path:'admin', component: ResearcherComponent, canActivate: [AuthGuard] },
   {path:'login', component: LoginComponent },
 
   
