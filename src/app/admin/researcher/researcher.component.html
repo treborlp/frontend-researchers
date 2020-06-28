@@ -11,14 +11,7 @@
               <h5 class="card-title">Registro de Investigador Inaigem</h5>
              
               <form>
-                <div class="form-group">
-                  <label for="exampleFormControlInput1">Name</label>
-                  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="name" [(ngModel)]="researcher.name" >
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Lastname</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="lastname" [(ngModel)]="researcher.lastname">
-                </div>
+                
                 <div class="form-group">
                     <label for="exampleFormControlInput1">MaxDegree</label>
                     <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="maxDegree" [(ngModel)]="researcher.maxDegree">
@@ -26,14 +19,6 @@
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Photo</label>
                     <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="photo" [(ngModel)]="researcher.photo">
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Email</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="email" [(ngModel)]="researcher.email">
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Cellphone</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="cellphone" [(ngModel)]="researcher.cellphone">
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlInput1">CTI Vitae</label>
@@ -77,8 +62,8 @@
                 
                 <tr *ngFor="let researcher of researchers">
                   <th scope="row">{{researcher.id}}</th>
-                  <td>{{researcher.name}}</td>
-                  <td>{{researcher.lastname}}</td>
+                  <td></td>
+                  <td></td>
                   <td>{{researcher.maxDegree}}</td>
                 </tr>
 

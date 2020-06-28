@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ResearcherService } from '../service/researcher.service';
 import { Researcher } from '../class/researcher';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-researcher',
@@ -11,19 +12,20 @@ export class ResearcherComponent implements OnInit {
 
   researcher: Researcher = new Researcher();
   researchers: Researcher[];
-  constructor(private researcherService: ResearcherService) { }
+  constructor(private researcherService: ResearcherService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.cargarUsuarios();
+    this.researcher.usuario = this.authService.usuario;
   }
 
   public crearResearcher(): void{
-    //console.log(this.researcher)
+    console.log(this.researcher)
     this.researcherService.createResearcher(this.researcher).subscribe(
       researcher => {
         //this.router.navigate(['/sectores'])
         //Swal.fire('Nuevo Sector', `Sector ${sector.nombreSector}`, 'success')   
-        console.log(`Researcher ${researcher.name} was created`);
+        console.log(`Researcher was created`);
         this.cargarUsuarios();     
       }
     )

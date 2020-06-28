@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
       
      //console.log(usuario);
 
-      this.router.navigate(["/public"]);
+      this.router.navigate(["/admin"]);
     }, error => {
       if(error.status == 400){
         console.log("Error de usuario");

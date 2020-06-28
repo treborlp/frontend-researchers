@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ResearcherService } from 'src/app/admin/service/researcher.service';
 import { Researcher } from 'src/app/admin/class/researcher';
+import { AuthService } from 'src/app/admin/service/auth.service';
 
 @Component({
   selector: 'app-profiles',
@@ -11,6 +12,7 @@ export class ProfilesComponent implements OnInit {
 
   researcher: Researcher = new Researcher();
   constructor(private researcherService: ResearcherService) { }
+
 
   ngOnInit(): void {
     
