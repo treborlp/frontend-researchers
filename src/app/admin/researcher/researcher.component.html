@@ -1,11 +1,12 @@
-
-
-<div class="container">
+<app-header>
+  
+</app-header>
+<div class="container mt-5">
     <div class="row">
       <div class="col-sm">
-        <div class="card">
+        <div class="card" *ngIf="flagForm">
             <div class="card-header">
-              Featured
+              Datos Generales
             </div>
             <div class="card-body">
               <h5 class="card-title">Registro de Investigador Inaigem</h5>
@@ -13,26 +14,22 @@
               <form>
                 
                 <div class="form-group">
-                    <label for="exampleFormControlInput1">MaxDegree</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="maxDegree" [(ngModel)]="researcher.maxDegree">
+                    <label for="exampleFormControlInput1">Último Grado Academico</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Ejm. Master en Telecomunicaciones" name="maxDegree" [(ngModel)]="researcher.maxDegree">
                 </div>
                 <div class="form-group">
-                    <label for="exampleFormControlInput1">Photo</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="photo" [(ngModel)]="researcher.photo">
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">CTI Vitae</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="profileCTIVitae" [(ngModel)]="researcher.profileCTIVitae">
+                    <label for="exampleFormControlInput1">Perfil CTI Vitae</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Desde Concytec" name="profileCTIVitae" [(ngModel)]="researcher.profileCTIVitae">
                 </div>
             
                 <div class="form-group">
-                    <label for="exampleFormControlInput1">Google Scholar</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="profileGoogleScholar" [(ngModel)]="researcher.profileGoogleScholar">
+                    <label for="exampleFormControlInput1">Perfil Google Scholar</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Desde Google Scholar" name="profileGoogleScholar" [(ngModel)]="researcher.profileGoogleScholar">
                 </div>
             
                 <div class="form-group">
-                    <label for="exampleFormControlInput1">ORCID</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="profileOrcid" [(ngModel)]="researcher.profileOrcid">
+                    <label for="exampleFormControlInput1">Identificador ORCID</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Desde ORCID" name="profileOrcid" [(ngModel)]="researcher.profileOrcid">
                 </div>
               
                 <button role="button"  (click)="crearResearcher()" class="btn btn-primary">Crear</button>
@@ -45,7 +42,7 @@
 
         <div class="card">
           <div class="card-header">
-            Investigadores Registrados
+            Publicaciones
           </div>
           <div class="card-body">
             
@@ -70,52 +67,74 @@
               </tbody>
             </table>
 
-            <a href="#" class="btn btn-primary">Registrar Investigador</a>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+              Agregar Publicación
+            </button>
           </div>
         </div>
        
 
       </div>
 
-      <div class="col-sm">
-        <div class="card">
-            <div class="card-header">
-              Featured
+      
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
-            <div class="card-body">
-              <h5 class="card-title">Registro de publicacion</h5>
-             
-              <form>
+            <div class="modal-body">
+                              
+                  <form>
+                    
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Autores</label>
+                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Ejm. Yarleque, C.,Vuille, M, Elison Timm"  name="authors" [(ngModel)]="publication.authors">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Titulo de la publicación</label>
+                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Ejm. Projections of future disappearance of the Quelccaya Ice Cap in the Central Andes"  name="title" [(ngModel)]="publication.title">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Journal</label>
+                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Nature Climate Change" name="journal" [(ngModel)]="publication.journal">
+                    </div>
                 
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Author</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1"  name="authors" [(ngModel)]="publication.authors">
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">Titulo</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1"  name="title" [(ngModel)]="publication.title">
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">journal</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" name="journal" [(ngModel)]="publication.journal">
-                </div>
-            
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">type</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" name="type" [(ngModel)]="publication.type">
-                </div>
-            
-                <div class="form-group">
-                    <label for="exampleFormControlInput1">doiUrl</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" name="doiUrl" [(ngModel)]="publication.doiUrl">
-                </div>
-              
-                <button role="button" (click)="crearPublication()" class="btn btn-primary">Crear Publicacion</button>
+
+                    <div class="form-group">
+                      <label for="inputSector">Estado de publicación</label>
+                      <select class="form-control" id="inputSector" [(ngModel)]="publication.type" name="type">
+                        <option value="preparatoria" >Publicación en preparación</option>
+                        <option value="arbitrada" >Publicación arbitradas</option>
+                        <option value="otras" >Otras publicaciones</option>
+                       
+                      </select> 
+                  </div>
                 
-              </form>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Dirección Web</label>
+                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Ejm. https://www.nature.com/articles/s41598-018-33698-z" name="doiUrl" [(ngModel)]="publication.doiUrl">
+                    </div>
+                  
+                    
+                  </form>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+              <button type="button" (click)="crearPublication()" class="btn btn-primary">Crear Publicación</button>
             </div>
           </div>
+        </div>
       </div>
+
+      
       
     </div>
   </div>

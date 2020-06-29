@@ -59,7 +59,8 @@ export class AuthService {
 
     this._usuario = new Usuarios();
     this._usuario.id = payload.id_usuario;
-    this._usuario.primerApellido = payload.nombre;
+    this._usuario.nombre = payload.nombre;
+    this._usuario.primerApellido = payload.primer_apellido;
     this._usuario.segundoApellido = payload.segundo_apellido;
     this._usuario.email = payload.email; 
     this._usuario.username = payload.user_name;
@@ -89,4 +90,12 @@ export class AuthService {
     }
     return false; 
   }
+
+  logout():void{
+    this._token = null;
+    this._usuario = null;
+    sessionStorage.clear();
+    //sessionStorage.removeItem("token") por separado
+  }
+
 }

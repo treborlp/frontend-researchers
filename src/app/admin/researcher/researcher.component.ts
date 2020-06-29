@@ -4,6 +4,7 @@ import { Researcher } from '../class/researcher';
 import { AuthService } from '../service/auth.service';
 import { Publication } from '../class/publication';
 import { Usuarios } from '../class/usuarios';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-researcher',
@@ -16,10 +17,13 @@ export class ResearcherComponent implements OnInit {
   researchers: Researcher[];
   publication: Publication = new Publication();
   usuario: Usuarios = new Usuarios();
-  constructor(private researcherService: ResearcherService, private authService: AuthService) { }
+  flagForm: boolean = false;
+  constructor(private researcherService: ResearcherService, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.cargarUsuarios();
+    this.existProfile();
+    
     //this.researcher.usuario = this.authService.usuario;
   }
 
@@ -39,7 +43,9 @@ export class ResearcherComponent implements OnInit {
         this.researcher =  researcher;
         console.log(`${this.researcher.id} Researcher was created`);
         //console.log(this.researcher.maxDegree);
-        this.cargarUsuarios();     
+        this.existProfile();
+        this.cargarUsuarios();
+             
       }
     )
 
@@ -55,7 +61,7 @@ export class ResearcherComponent implements OnInit {
   }
 
   crearPublication(): void{
-    this.publication.researcher = this.researcher;
+    
     //console.log(this.publication)
     
     this.researcherService.createPublication(this.publication).subscribe(
@@ -63,8 +69,23 @@ export class ResearcherComponent implements OnInit {
         console.log("publicacion creada");
       }
     )
+
   }
 
+  existProfile(): void{
+    this.researcherService.checkResearchProfile(this.authService.usuario.id).subscribe(
+      profile => {
+        if(profile==null){
+          this.flagForm = true
+          
+        }else{
+          this.flagForm = false
+          this.publication.researcher = profile;
 
+        }
+      }
+    )
+  }
 
+  
 }

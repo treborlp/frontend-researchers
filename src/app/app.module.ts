@@ -9,6 +9,7 @@ import { ResearcherComponent } from './admin/researcher/researcher.component';
 import { ProfilesComponent } from './public/profiles/profiles.component';
 import { LoginComponent } from './admin/login/login.component';
 import { AuthGuard } from './admin/guard/auth.guard';
+import { HeaderComponent } from './sections/header/header.component';
 
 //objeto de rutas
 const routes: Routes = [
@@ -25,7 +26,8 @@ const routes: Routes = [
     AppComponent,
     ResearcherComponent,
     ProfilesComponent,
-    LoginComponent
+    LoginComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

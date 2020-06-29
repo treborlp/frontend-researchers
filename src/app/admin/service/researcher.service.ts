@@ -80,6 +80,15 @@ export class ResearcherService {
     )
   }
 
+  checkResearchProfile(id: number): Observable<Researcher>{
+    return this.http.get<Researcher>(`${this.url}/user/${id}`, {headers: this.agregarAuthorizationHeader()}).pipe(
+      catchError(e=>  {
+        this.isNoAutorizado(e)
+        return throwError(e);
+      })
+    )
+  }
+
   
 
   

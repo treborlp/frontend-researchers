@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy, ViewEncapsulation, Inject } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
 import { Usuarios } from '../class/usuarios';
 import { AuthService } from '../service/auth.service';
 import { Router } from '@angular/router';
@@ -14,25 +13,21 @@ export class LoginComponent implements OnInit {
 
   usuario: Usuarios;
 
-  constructor( @Inject(DOCUMENT) private _document, private auth: AuthService, private router: Router ) { 
+  constructor(private auth: AuthService, private router: Router ) { 
     this.usuario = new Usuarios();
   }
 
 
   ngOnInit(): void {
     //console.log(this.auth.isAuthenticated())
-    this._document.body.classList.add('bodybg-color');
+    
     if(this.auth.isAuthenticated()){
       this.router.navigate(["/public"]);
     }
    
   }
 
-  ngOnDestroy() {
-    // remove the class form body tag
-    this._document.body.classList.add('bodybg-color');
-  }
-
+  
   login(): void{
 
     //console.log(this.usuario)
