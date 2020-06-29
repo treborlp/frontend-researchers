@@ -1,4 +1,5 @@
 import { Researcher } from './researcher';
+import { Role } from './role';
 
 export class Usuarios {
     id:number;
@@ -9,6 +10,5 @@ export class Usuarios {
     primerApellido: string;
     segundoApellido: string;
     email:string;
-    researcher: Researcher;
-    roles: string[] =[];
+    roles: Role[] =[];
 }

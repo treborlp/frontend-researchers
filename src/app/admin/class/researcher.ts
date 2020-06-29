@@ -1,4 +1,5 @@
 import { Usuarios } from './usuarios';
+import { Publication } from './publication';
 
 export class Researcher {
     id: number;
@@ -6,6 +7,7 @@ export class Researcher {
     photo: String;
     profileCTIVitae: String;
     profileGoogleScholar: String;
-    profileOrcid: String
+    profileOrcid: String;
+    publications: Publication[]=[];
     usuario: Usuarios;
 }

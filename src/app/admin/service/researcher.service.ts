@@ -5,6 +5,7 @@ import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
+import { Publication } from '../class/publication';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class ResearcherService {
 
   private url: string = "http://localhost:8080/api/researcher"
 
-  private headers = new HttpHeaders({'Content-Type':'application/json'})
+  private headers = new HttpHeaders({'Content-Type': 'application/json'})
 
   constructor(private http: HttpClient, private router: Router, private authService: AuthService) { }
 
@@ -42,8 +43,21 @@ export class ResearcherService {
   createResearcher(researcher: Researcher): Observable<Researcher>{
     return this.http.post<Researcher>(this.url, researcher, {headers: this.agregarAuthorizationHeader()}).pipe(
       catchError(e=>  {
-        if(this.isNoAutorizado(e))
-           return throwError(e);
+        if(this.isNoAutorizado(e)){
+          return throwError(e);
+        }
+           
+      })
+    )
+  }
+
+  createPublication(publication: Publication):  Observable<Publication>{
+    return this.http.post<Publication>(`${this.url}/publication`, publication, {headers: this.agregarAuthorizationHeader()}).pipe(
+      catchError(e=>  {
+        if(this.isNoAutorizado(e)){
+          return throwError(e);
+        }
+           
       })
     )
   }
@@ -58,14 +72,15 @@ export class ResearcherService {
   }
 
   getResearchers(): Observable<Researcher[]>{
-    return this.http.get(this.url, {headers: this.agregarAuthorizationHeader()}).pipe(
-      map((response) => response as Researcher[]),
+    return this.http.get<Researcher[]>(this.url, {headers: this.agregarAuthorizationHeader()}).pipe(
       catchError(e=>  {
            this.isNoAutorizado(e)
            return throwError(e);
       })
     )
   }
+
+  
 
   
 

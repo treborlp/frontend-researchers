@@ -76,6 +76,46 @@
        
 
       </div>
+
+      <div class="col-sm">
+        <div class="card">
+            <div class="card-header">
+              Featured
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Registro de publicacion</h5>
+             
+              <form>
+                
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Author</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1"  name="authors" [(ngModel)]="publication.authors">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Titulo</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1"  name="title" [(ngModel)]="publication.title">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">journal</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1" name="journal" [(ngModel)]="publication.journal">
+                </div>
+            
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">type</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1" name="type" [(ngModel)]="publication.type">
+                </div>
+            
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">doiUrl</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1" name="doiUrl" [(ngModel)]="publication.doiUrl">
+                </div>
+              
+                <button role="button" (click)="crearPublication()" class="btn btn-primary">Crear Publicacion</button>
+                
+              </form>
+            </div>
+          </div>
+      </div>
       
     </div>
   </div>

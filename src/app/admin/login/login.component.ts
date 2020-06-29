@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
     
     this.auth.login(this.usuario).subscribe(response => {
       
-      //console.log(response.access_token)
+      console.log(response.access_token)
       this.auth.guardarUsuario(response.access_token)
       this.auth.gurdarToken(response.access_token);
 
