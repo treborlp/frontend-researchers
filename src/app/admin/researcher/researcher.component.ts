@@ -17,23 +17,20 @@ export class ResearcherComponent implements OnInit {
   researchers: Researcher[];
   publication: Publication = new Publication();
   usuario: Usuarios = new Usuarios();
-  flagForm: boolean = false;
+  flagEdit: boolean = true;
   constructor(private researcherService: ResearcherService, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    this.cargarUsuarios();
     this.existProfile();
-    
+    this.cargarUsuarios();
+
     //this.researcher.usuario = this.authService.usuario;
   }
 
-  public crearResearcher(): void{
+  crearResearcher(): void{
     
-    //this.usuario = this.authService.usuario;
     this.usuario.id =this.authService.usuario.id;
     this.researcher.usuario = this.usuario;
-    //console.log(this.usuario);
-    //console.log(this.researcher);
 
     this.researcherService.createResearcher(this.researcher).subscribe(
       researcher => {
@@ -50,6 +47,8 @@ export class ResearcherComponent implements OnInit {
     )
 
   }
+
+  actualizarUsuario(): void{}
 
   cargarUsuarios(): void{
     console.log("Aqui cargamos los usuarios")
@@ -75,16 +74,17 @@ export class ResearcherComponent implements OnInit {
   existProfile(): void{
     this.researcherService.checkResearchProfile(this.authService.usuario.id).subscribe(
       profile => {
-        if(profile==null){
-          this.flagForm = true
-          
-        }else{
-          this.flagForm = false
+          if(profile!=null){
+            this.researcher = profile;
+          }
           this.publication.researcher = profile;
-
         }
-      }
     )
+  }
+
+  onKey(event: any) { // without type info
+   // this.values += event.target.value + ' | ';
+   console.log(event);
   }
 
   
