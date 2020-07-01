@@ -62,11 +62,11 @@
               </thead>
               <tbody>
                 
-                <tr *ngFor="let researcher of researchers">
-                  <th scope="row">{{researcher.id}}</th>
-                  <td></td>
-                  <td></td>
-                  <td>{{researcher.maxDegree}}</td>
+                <tr *ngFor="let pub of publications">
+                  <th scope="row">{{pub.id}}</th>
+                  <td>{{pub.authors}}</td>
+                  <td>{{pub.title}}</td>
+                  <td>{{pub.doiUrl}}</td>
                 </tr>
 
               </tbody>

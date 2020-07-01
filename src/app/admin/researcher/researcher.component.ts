@@ -17,6 +17,7 @@ export class ResearcherComponent implements OnInit {
   researcher: Researcher = new Researcher();
   researchers: Researcher[];
   publication: Publication = new Publication();
+  publications: Publication[];
   usuario: Usuarios = new Usuarios();
   flagEdit: boolean = true;
   constructor(private researcherService: ResearcherService, 
@@ -27,7 +28,7 @@ export class ResearcherComponent implements OnInit {
   ngOnInit(): void {
     this.existProfile(); //verifica si el usuario ya tiene un perfil de investigador
     this.cargarUsuarios(); 
-    this.cargarPublicaciones();
+    //this.cargarPublicaciones();
 
   }
 
@@ -53,7 +54,7 @@ export class ResearcherComponent implements OnInit {
     this.publicationService.getPublicationsById(this.researcher.id).subscribe(
         publications => {
           if(publications!=null){
-            console.log(publications);
+            this.publications = publications
           }
         }
     )
@@ -82,6 +83,7 @@ export class ResearcherComponent implements OnInit {
     this.publicationService.createPublication(this.publication).subscribe(
       publication => {
         console.log("publicacion creada");
+        this.cargarPublicaciones();
       }
     )
 
@@ -91,7 +93,8 @@ export class ResearcherComponent implements OnInit {
     this.researcherService.checkResearchProfile(this.authService.usuario.id).subscribe(
       profile => {
           if(profile!=null){ // Si el usuario ya tiene el perfil de investigador
-            this.researcher = profile; //Asignamos a la variable usuario this.researcher con los datos del perfi de investigador
+            this.researcher = profile ; //Asignamos a la variable usuario this.researcher con los datos del perfi de investigador
+            this.cargarPublicaciones();
           }
           this.publication.researcher = profile;
         }
