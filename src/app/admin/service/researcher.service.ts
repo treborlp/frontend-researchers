@@ -90,6 +90,15 @@ export class ResearcherService {
     )
   }
 
+  getPublicProfileResearcher(username: string): Observable<Researcher>{
+    return this.http.get<Researcher>(`${this.url}/public/${username}`, {headers: this.agregarAuthorizationHeader()}).pipe(
+      catchError(e=>  {
+        this.isNoAutorizado(e)
+        return throwError(e);
+      })
+    )
+  }
+
   
 
   

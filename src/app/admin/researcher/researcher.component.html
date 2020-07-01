@@ -1,12 +1,57 @@
 <app-header>
   
 </app-header>
-<div class="container mt-5">
+<div class="container-fluid mt-5">
     <div class="row">
-      <div class="col-sm">
+      <div class="col-3">
         <div class="card">
             <div class="card-header">
-              Datos Generales
+              Datos del Usuario
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Registro de Investigador Inaigem</h5>
+             
+              <form>
+                
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Nombre</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1"   name="nombre" [(ngModel)]="usuario2.nombre">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Primer Apellido</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1"  name="primerApellido" [(ngModel)]="usuario2.primerApellido">
+                </div>
+            
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Segundo Apellido</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1"  name="segundoApellido" [(ngModel)]="usuario2.segundoApellido">
+                </div>
+            
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Email</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1"  name="email" [(ngModel)]="usuario2.email">
+                </div>
+
+                <div class="form-group">
+                  <label for="exampleFormControlInput1">Telefono</label>
+                  <input type="email" class="form-control" id="exampleFormControlInput1" name="telefono" [(ngModel)]="usuario2.telefono">
+              </div>
+
+             <!--   <button class="btn btn-primary" role="button" (click)='crearResearcher()' *ngIf="!researcher.id else elseBlock" [disabled]="!researcherForm.form.valid">Crear</button>
+
+                <ng-template #elseBlock>
+                  <button class="btn btn-success" role="button" (click)='actualizarUsuario()' [disabled]="!researcherForm.form.valid">Editar</button>
+                </ng-template>-->
+              
+              </form>
+            </div>
+          </div>
+      </div>
+
+      <div class="col-3">
+        <div class="card">
+            <div class="card-header">
+              Datos de Investigador
             </div>
             <div class="card-body">
               <h5 class="card-title">Registro de Investigador Inaigem</h5>
@@ -35,7 +80,7 @@
                 <button class="btn btn-primary" role="button" (click)='crearResearcher()' *ngIf="!researcher.id else elseBlock" [disabled]="!researcherForm.form.valid">Crear</button>
 
                 <ng-template #elseBlock>
-                  <button class="btn btn-primary" role="button" (click)='actualizarUsuario()' [disabled]="!researcherForm.form.valid">Editar</button>
+                  <button class="btn btn-success" role="button" (click)='actualizarUsuario()' [disabled]="!researcherForm.form.valid">Editar</button>
                 </ng-template>
               
               </form>
@@ -43,7 +88,7 @@
           </div>
       </div>
 
-      <div class="col-sm">
+      <div class="col-6">
 
         <div class="card">
           <div class="card-header">
@@ -63,10 +108,13 @@
               <tbody>
                 
                 <tr *ngFor="let pub of publications">
-                  <th scope="row">{{pub.id}}</th>
+                  <td>{{countPublication}}</td>
                   <td>{{pub.authors}}</td>
                   <td>{{pub.title}}</td>
+                  <td>{{pub.journal}}</td>
                   <td>{{pub.doiUrl}}</td>
+                  <td><Button class="btn btn-primary">Editar</Button></td>
+                  <td><Button class="btn btn-warning">Eliminar</Button></td>
                 </tr>
 
               </tbody>
@@ -82,9 +130,7 @@
 
       </div>
 
-      
-
-      <!-- Modal -->
+        <!-- Modal -->
       <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
@@ -133,14 +179,12 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-              <button type="button" (click)="crearPublication()" class="btn btn-primary">Crear Publicación</button>
+              <button type="button" (click)="crearPublication()" data-dismiss="modal" class="btn btn-primary">Crear Publicación</button>
             </div>
           </div>
         </div>
       </div>
 
-      
-      
     </div>
   </div>
 

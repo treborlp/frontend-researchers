@@ -10,6 +10,7 @@ import { ProfilesComponent } from './public/profiles/profiles.component';
 import { LoginComponent } from './admin/login/login.component';
 import { AuthGuard } from './admin/guard/auth.guard';
 import { HeaderComponent } from './sections/header/header.component';
+import { TeamComponent } from './public/team/team.component';
 
 //objeto de rutas
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path:'public', component: ProfilesComponent },
   {path:'admin', component: ResearcherComponent, canActivate: [AuthGuard] },
   {path:'login', component: LoginComponent },
+  {path:'team/:username', component: TeamComponent},
 
   
 ];
@@ -27,7 +29,8 @@ const routes: Routes = [
     ResearcherComponent,
     ProfilesComponent,
     LoginComponent,
-    HeaderComponent
+    HeaderComponent,
+    TeamComponent
   ],
   imports: [
     BrowserModule,

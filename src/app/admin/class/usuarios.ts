@@ -7,6 +7,7 @@ export class Usuarios {
     password:string;
     enabled: boolean;
     nombre: string;
+    telefono: string;
     primerApellido: string;
     segundoApellido: string;
     email:string;

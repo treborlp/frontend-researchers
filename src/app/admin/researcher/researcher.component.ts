@@ -16,9 +16,11 @@ export class ResearcherComponent implements OnInit {
 
   researcher: Researcher = new Researcher();
   researchers: Researcher[];
+  countPublication: number =0;
   publication: Publication = new Publication();
   publications: Publication[];
   usuario: Usuarios = new Usuarios();
+  usuario2: Usuarios = new Usuarios();
   flagEdit: boolean = true;
   constructor(private researcherService: ResearcherService, 
     private authService: AuthService, 
@@ -26,16 +28,20 @@ export class ResearcherComponent implements OnInit {
     private publicationService: PublicationService) { }
 
   ngOnInit(): void {
+    this.usuario2 = this.authService.usuario as Usuarios;
+    console.log(this.usuario)
     this.existProfile(); //verifica si el usuario ya tiene un perfil de investigador
     this.cargarUsuarios(); 
-    //this.cargarPublicaciones();
+    this.cargarPublicaciones();
+
 
   }
 
   crearResearcher(): void{
-    
+  
     this.usuario.id =this.authService.usuario.id;
     this.researcher.usuario = this.usuario;
+    //console.log(this.researcher)
 
     this.researcherService.createResearcher(this.researcher).subscribe(
       researcher => {
@@ -82,8 +88,10 @@ export class ResearcherComponent implements OnInit {
     
     this.publicationService.createPublication(this.publication).subscribe(
       publication => {
-        console.log("publicacion creada");
+        //console.log("publicacion creada");
         this.cargarPublicaciones();
+        this.publication = new Publication();
+
       }
     )
 
