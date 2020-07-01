@@ -5,13 +5,14 @@ import { Router } from '@angular/router';
 import { Usuarios } from '../class/usuarios';
 import { catchError } from 'rxjs/operators';
 import { throwError, Observable } from 'rxjs';
+import {URL_BACKEND} from '../config/config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
 
-  private url: string = "http://localhost:8080/api/usuarios"
+  private url: string = URL_BACKEND+"/api/usuarios"
 
   private headers = new HttpHeaders({'Content-Type': 'application/json'})
 

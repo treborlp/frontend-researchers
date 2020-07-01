@@ -6,13 +6,14 @@ import { map, catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 import { Publication } from '../class/publication';
+import {URL_BACKEND} from '../config/config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ResearcherService {
 
-  private url: string = "http://localhost:8080/api/researcher"
+  private url: string = URL_BACKEND+"/api/researcher"
 
   private headers = new HttpHeaders({'Content-Type': 'application/json'})
 

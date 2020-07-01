@@ -1,0 +1,1 @@
+export const URL_BACKEND = "https://app-researcher-profile.herokuapp.com";
