@@ -5,6 +5,7 @@ import { AuthService } from '../service/auth.service';
 import { Publication } from '../class/publication';
 import { Usuarios } from '../class/usuarios';
 import { Router } from '@angular/router';
+import { PublicationService } from '../service/publication.service';
 
 @Component({
   selector: 'app-researcher',
@@ -18,13 +19,16 @@ export class ResearcherComponent implements OnInit {
   publication: Publication = new Publication();
   usuario: Usuarios = new Usuarios();
   flagEdit: boolean = true;
-  constructor(private researcherService: ResearcherService, private authService: AuthService, private router: Router) { }
+  constructor(private researcherService: ResearcherService, 
+    private authService: AuthService, 
+    private router: Router,
+    private publicationService: PublicationService) { }
 
   ngOnInit(): void {
-    this.existProfile();
-    this.cargarUsuarios();
+    this.existProfile(); //verifica si el usuario ya tiene un perfil de investigador
+    this.cargarUsuarios(); 
+    this.cargarPublicaciones();
 
-    //this.researcher.usuario = this.authService.usuario;
   }
 
   crearResearcher(): void{
@@ -34,12 +38,9 @@ export class ResearcherComponent implements OnInit {
 
     this.researcherService.createResearcher(this.researcher).subscribe(
       researcher => {
-        //this.router.navigate(['/sectores'])
-        //Swal.fire('Nuevo Sector', `Sector ${sector.nombreSector}`, 'success')   
-        
+
         this.researcher =  researcher;
         console.log(`${this.researcher.id} Researcher was created`);
-        //console.log(this.researcher.maxDegree);
         this.existProfile();
         this.cargarUsuarios();
              
@@ -48,7 +49,23 @@ export class ResearcherComponent implements OnInit {
 
   }
 
-  actualizarUsuario(): void{}
+  cargarPublicaciones(){
+    this.publicationService.getPublicationsById(this.researcher.id).subscribe(
+        publications => {
+          if(publications!=null){
+            console.log(publications);
+          }
+        }
+    )
+  }
+
+  actualizarUsuario(): void{
+   this.researcherService.updateResearcher(this.researcher).subscribe(
+      researcher => {
+        this.researcher = researcher
+      }
+    )
+  }
 
   cargarUsuarios(): void{
     console.log("Aqui cargamos los usuarios")
@@ -60,10 +77,9 @@ export class ResearcherComponent implements OnInit {
   }
 
   crearPublication(): void{
+
     
-    //console.log(this.publication)
-    
-    this.researcherService.createPublication(this.publication).subscribe(
+    this.publicationService.createPublication(this.publication).subscribe(
       publication => {
         console.log("publicacion creada");
       }
@@ -74,18 +90,14 @@ export class ResearcherComponent implements OnInit {
   existProfile(): void{
     this.researcherService.checkResearchProfile(this.authService.usuario.id).subscribe(
       profile => {
-          if(profile!=null){
-            this.researcher = profile;
+          if(profile!=null){ // Si el usuario ya tiene el perfil de investigador
+            this.researcher = profile; //Asignamos a la variable usuario this.researcher con los datos del perfi de investigador
           }
           this.publication.researcher = profile;
         }
     )
   }
 
-  onKey(event: any) { // without type info
-   // this.values += event.target.value + ' | ';
-   console.log(event);
-  }
 
   
 }

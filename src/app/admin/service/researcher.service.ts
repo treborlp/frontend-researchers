@@ -51,17 +51,17 @@ export class ResearcherService {
     )
   }
 
-  createPublication(publication: Publication):  Observable<Publication>{
-    return this.http.post<Publication>(`${this.url}/publication`, publication, {headers: this.agregarAuthorizationHeader()}).pipe(
+  updateResearcher(researcher: Researcher): Observable<Researcher>{
+    return this.http.put<Researcher>(`${this.url}/${researcher.id}`, researcher, {headers: this.agregarAuthorizationHeader()}).pipe(
       catchError(e=>  {
         if(this.isNoAutorizado(e)){
           return throwError(e);
         }
-           
       })
     )
   }
 
+  
   findResearcher(id: number): Observable<Researcher>{
     return this.http.get<Researcher>(`${this.url}/${id}`, {headers: this.agregarAuthorizationHeader()}).pipe(
       catchError(e=>  {
@@ -79,6 +79,7 @@ export class ResearcherService {
       })
     )
   }
+
 
   checkResearchProfile(id: number): Observable<Researcher>{
     return this.http.get<Researcher>(`${this.url}/user/${id}`, {headers: this.agregarAuthorizationHeader()}).pipe(
