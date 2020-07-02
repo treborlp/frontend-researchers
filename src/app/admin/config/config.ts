@@ -1,1 +1,2 @@
-export const URL_BACKEND = "https://app-researcher-profile.herokuapp.com";
+export const URL_BACKEND = "http://localhost:8080";
+export const URL_BACKEND_PRODUCTION = "https://app-researcher-profile.herokuapp.com";

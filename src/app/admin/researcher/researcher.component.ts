@@ -15,7 +15,6 @@ import { PublicationService } from '../service/publication.service';
 export class ResearcherComponent implements OnInit {
 
   researcher: Researcher = new Researcher();
-  researchers: Researcher[];
   countPublication: number =0;
   publication: Publication = new Publication();
   publications: Publication[];
@@ -29,34 +28,24 @@ export class ResearcherComponent implements OnInit {
 
   ngOnInit(): void {
     this.usuario2 = this.authService.usuario as Usuarios;
-    console.log(this.usuario)
-    this.existProfile(); //verifica si el usuario ya tiene un perfil de investigador
-    this.cargarUsuarios(); 
-    this.cargarPublicaciones();
-
+    this.usuarioTienePerfilDeInvestigador(); //verifica si el usuario ya tiene un perfil de investigador
 
   }
 
   crearResearcher(): void{
   
-    this.usuario.id =this.authService.usuario.id;
-    this.researcher.usuario = this.usuario;
-    //console.log(this.researcher)
+    this.usuario.id =this.authService.usuario.id; //Se asocia el identificado del usuario a su perfil de investigador
+    this.researcher.usuario = this.usuario; //Se asocia el identificado del usuario a su perfil de investigador
 
     this.researcherService.createResearcher(this.researcher).subscribe(
       researcher => {
-
         this.researcher =  researcher;
-        console.log(`${this.researcher.id} Researcher was created`);
-        this.existProfile();
-        this.cargarUsuarios();
-             
+        this.usuarioTienePerfilDeInvestigador();
       }
     )
-
   }
 
-  cargarPublicaciones(){
+  cargarPublicaciones(): void{
     this.publicationService.getPublicationsById(this.researcher.id).subscribe(
         publications => {
           if(publications!=null){
@@ -74,37 +63,27 @@ export class ResearcherComponent implements OnInit {
     )
   }
 
-  cargarUsuarios(): void{
-    console.log("Aqui cargamos los usuarios")
-    this.researcherService.getResearchers().subscribe(
-      researchers => {
-        this.researchers = researchers
-      }  
-    )
-  }
 
   crearPublication(): void{
 
-    
     this.publicationService.createPublication(this.publication).subscribe(
       publication => {
-        //console.log("publicacion creada");
         this.cargarPublicaciones();
-        this.publication = new Publication();
-
+        this.publication = new Publication(); //Reinicializamos el objeto para limpiar el formulario de Publicaciones
+        this.publication.researcher = this.researcher; //Asignamos el perfil de investigador al nuevo objeto
       }
     )
 
   }
 
-  existProfile(): void{
+  usuarioTienePerfilDeInvestigador(): void{
     this.researcherService.checkResearchProfile(this.authService.usuario.id).subscribe(
       profile => {
-          if(profile!=null){ // Si el usuario ya tiene el perfil de investigador
+          if(profile!=null){ // Si el usuario ya tiene el perfil de investigador no entra en este bloque
             this.researcher = profile ; //Asignamos a la variable usuario this.researcher con los datos del perfi de investigador
             this.cargarPublicaciones();
           }
-          this.publication.researcher = profile;
+          this.publication.researcher = profile; // Si el usuario ya tiene perfil de investigador, se asigna su identificador a los registros de publicaciones
         }
     )
   }

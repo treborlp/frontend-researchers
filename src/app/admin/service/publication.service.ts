@@ -5,7 +5,6 @@ import { AuthService } from './auth.service';
 import { Publication } from '../class/publication';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Researcher } from '../class/researcher';
 import {URL_BACKEND} from '../config/config';
 
 @Injectable({
@@ -56,6 +55,7 @@ export class PublicationService {
   getPublicationsById(id: number): Observable<Publication[]>{
     return this.http.get<Publication[]>(`${this.url}/publication/${id}`, {headers: this.agregarAuthorizationHeader()}).pipe(
       catchError(e=>  {
+        console.log("Aquí se encuentra el error");
            this.isNoAutorizado(e)
            return throwError(e);
       })
