@@ -100,6 +100,21 @@ export class ResearcherService {
     )
   }
 
+  subirFoto(archivo: File, id): Observable<Researcher>{
+    let formData = new FormData();
+    formData.append("archivo",archivo);
+    formData.append("id",id);
+
+    return this.http.post(`${this.url}/upload`,formData).pipe(
+      map((response: any) => response.researcher as Researcher),
+      catchError(e =>{
+        console.log(e.error.mensaje);
+        return throwError(e);
+      })
+    );
+
+  }
+
   
 
   

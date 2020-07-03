@@ -6,6 +6,7 @@ import { Publication } from '../class/publication';
 import { Usuarios } from '../class/usuarios';
 import { Router } from '@angular/router';
 import { PublicationService } from '../service/publication.service';
+import {URL_BACKEND} from '../config/config';
 
 @Component({
   selector: 'app-researcher',
@@ -21,6 +22,8 @@ export class ResearcherComponent implements OnInit {
   usuario: Usuarios = new Usuarios();
   usuario2: Usuarios = new Usuarios();
   flagEdit: boolean = true;
+  url_backend: string = URL_BACKEND; 
+  private fotoSeleccionada: File;
   constructor(private researcherService: ResearcherService, 
     private authService: AuthService, 
     private router: Router,
@@ -86,6 +89,27 @@ export class ResearcherComponent implements OnInit {
           this.publication.researcher = profile; // Si el usuario ya tiene perfil de investigador, se asigna su identificador a los registros de publicaciones
         }
     )
+  }
+
+  seleccionarFoto(event){
+    this.fotoSeleccionada = event.target.files[0];
+    console.log(this.fotoSeleccionada)
+    if(this.fotoSeleccionada.type.indexOf("image")<0){
+      this.fotoSeleccionada = null;
+      console.log("Archivo no permitido");
+    }
+
+  }
+
+  subirFoto():void{
+    if(!this.fotoSeleccionada){
+      console.log("debe seleccionare una foto antes de subir")
+    }else{
+      this.researcherService.subirFoto(this.fotoSeleccionada, this.researcher.id).subscribe(
+        response => this.researcher = response
+      )
+    }
+    
   }
 
 
