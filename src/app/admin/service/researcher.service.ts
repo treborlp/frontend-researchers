@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { HttpHeaders, HttpClient, HttpRequest, HttpEvent } from '@angular/common/http';
 import { Researcher } from '../class/researcher';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
@@ -100,18 +100,16 @@ export class ResearcherService {
     )
   }
 
-  subirFoto(archivo: File, id): Observable<Researcher>{
+  subirFoto(archivo: File, id): Observable<HttpEvent<{}>>{
     let formData = new FormData();
     formData.append("archivo",archivo);
     formData.append("id",id);
 
-    return this.http.post(`${this.url}/upload`,formData).pipe(
-      map((response: any) => response.researcher as Researcher),
-      catchError(e =>{
-        console.log(e.error.mensaje);
-        return throwError(e);
-      })
-    );
+    const req = new HttpRequest('POST', `${this.url}/upload`,formData, {
+      reportProgress:true
+    });
+
+    return this.http.request(req);
 
   }
 

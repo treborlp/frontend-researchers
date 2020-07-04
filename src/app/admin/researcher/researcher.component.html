@@ -16,6 +16,13 @@
               <button (click)="subirFoto()" class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Subir</button>
             </div>
           </div>
+          <!--Barra de Progreso-->
+          <div class="progress" *ngIf="progresoSubidoFoto > 0" >
+            <div class="progress-bar progress-bar-striped bg-info" role="progressbar" [ngStyle]="{width: progresoSubidoFoto+'%'}" attr.aria-valuenow="{{progresoSubidoFoto}}" aria-valuemin="0" aria-valuemax="100">
+              {{progresoSubidoFoto}}
+            </div>
+          </div>
+          <!--Fin Barra de Progreso-->
         </div>
       </div>
     </div>
