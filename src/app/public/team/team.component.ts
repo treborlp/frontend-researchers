@@ -6,6 +6,7 @@ import { Usuarios } from 'src/app/admin/class/usuarios';
 import { UsuarioService } from 'src/app/admin/service/usuario.service';
 import { PublicationService } from 'src/app/admin/service/publication.service';
 import { Publication } from 'src/app/admin/class/publication';
+import {URL_BACKEND} from '../../admin/config/config';
 
 @Component({
   selector: 'app-team',
@@ -17,6 +18,7 @@ export class TeamComponent implements OnInit {
   researcher: Researcher = new Researcher();
   usuario:  Usuarios = new Usuarios();
   publicaciones: Publication[];
+  url_backend: string = URL_BACKEND; 
   constructor(private activatedRoute: ActivatedRoute, 
     private researcherService: ResearcherService,
     private usuarioService: UsuarioService,
@@ -29,6 +31,7 @@ export class TeamComponent implements OnInit {
       if (username) {
         this.researcherService.getPublicProfileResearcher(username).subscribe(researcher =>{
           this.researcher = researcher
+          console.log(this.researcher);
           this.publicacionesService.getPublicationsById(this.researcher.id).subscribe(publicaciones => this.publicaciones = publicaciones)
         })
         this.usuarioService.getPublicProfileUserByUsername(username).subscribe(usuario => {

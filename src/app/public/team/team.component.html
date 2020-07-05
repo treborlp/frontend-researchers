@@ -7,7 +7,7 @@
                 <div class="col-md-3 col-sm-3 col-xs-12 user-profil-part pull-left">
                     <div class="row ">
                         <div class="col-md-12 col-md-12-sm-12 col-xs-12 user-image text-center">
-                            <img src="assets/img/profile-researcher-120px.jpg" class="rounded-circle">
+                            <img *ngIf="researcher?.photo" src="{{url_backend}}/api/upload/img/{{researcher.photo}}"  class="rounded-circle">
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12 user-detail-section1 text-center">
                             <button id="btn-contact" data-toggle="modal" data-target="#contact" class="btn btn-success btn-block follow">Contactarme</button> 
