@@ -29,6 +29,11 @@ export class PublicationService {
 
   private isNoAutorizado(error): boolean{
     if(error.status==401){
+
+      if(this.authService.isAuthenticated()){
+        this.authService.logout();
+      }
+
       this.router.navigate(["/login"])
       return true;
     }
