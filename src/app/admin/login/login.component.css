@@ -1,5 +1,6 @@
 #container2{
-    background-blend-mode: red;
+    height: 100vh;
+    background-image: url(../../../assets/img/bg-login.png);
 }
 .user_card {
     height: 400px;
@@ -17,4 +18,25 @@
     -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 5px;
 
+}
+
+.container-logo{
+    position: relative;
+    height: 15%;
+}
+
+.log-inaigem{
+    position: absolute;
+    min-height: 100%;
+    padding-top: 50px;
+}
+
+.img-logo-inaigem{
+    margin-left: 35px;
+}
+
+.footer-login{
+    border: 1px solid red;
+    background-image: url(../../../assets/img/bg-footer.jpg);
+    height: 25%;
 }

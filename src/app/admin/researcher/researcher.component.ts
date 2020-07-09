@@ -27,7 +27,8 @@ export class ResearcherComponent implements OnInit {
   private fotoSeleccionada: File;
   progresoSubidoFoto:number =0;
 
-  constructor(private researcherService: ResearcherService, 
+  constructor(
+    private researcherService: ResearcherService, 
     private authService: AuthService, 
     private router: Router,
     private publicationService: PublicationService) { }
@@ -35,7 +36,6 @@ export class ResearcherComponent implements OnInit {
   ngOnInit(): void {
     this.usuario2 = this.authService.usuario as Usuarios;
     this.usuarioTienePerfilDeInvestigador(); //verifica si el usuario ya tiene un perfil de investigador
-
   }
 
   crearResearcher(): void{
@@ -68,8 +68,7 @@ export class ResearcherComponent implements OnInit {
       }
     )
   }
-
-
+  
   crearPublication(): void{
 
     this.publicationService.createPublication(this.publication).subscribe(

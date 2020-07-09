@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy, ViewEncapsulation, Inject } from '@angula
 import { Usuarios } from '../class/usuarios';
 import { AuthService } from '../service/auth.service';
 import { Router } from '@angular/router';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-login',
@@ -19,8 +20,9 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit(): void {
+    let now = moment(); // add this 2 of 4
     //console.log(this.auth.isAuthenticated())
-    
+    console.log("today is:"+now.format());
     if(this.auth.isAuthenticated()){
       this.router.navigate(["/public"]);
     }
